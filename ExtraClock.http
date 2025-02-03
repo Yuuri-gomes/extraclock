@@ -1,0 +1,6 @@
+@ExtraClock_HostAddress = http://localhost:5016
+
+GET {{ExtraClock_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
