@@ -4,20 +4,13 @@ using System.Threading.Tasks;
 
 [ApiController]
 [Route("api/v1/overtime")]
-public class OvertimeController : ControllerBase
+public class OvertimeQueryController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public OvertimeController(IMediator mediator)
+    public OvertimeQueryController(IMediator mediator)
     {
         _mediator = mediator;
-    }
-
-    [HttpPost("register")]
-    public async Task<IActionResult> Registrar([FromBody] RegisterOvertimeCommand command)
-    {
-        var result = await _mediator.Send(command);
-        return Ok(new { Id = result, Mensagem = "Hora extra registrada!" });
     }
 
     [HttpGet("list")]
