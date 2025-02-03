@@ -1,52 +1,37 @@
-# Prerequisites
-*.d
+# .NET Core
+bin/
+obj/
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
 
-# Precompiled Headers
-*.gch
-*.pch
+# Windows Installer files
+Thumbs.db
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# Windows Installer files
+*.log
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+# VS Code directories
+.vscode/
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+# Rider
+.idea/
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# User-specific files
+.vs2019/
+.vs2017/
+
+# .NET Core SDK and Runtime
+*.dotnet/
