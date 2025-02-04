@@ -39,21 +39,97 @@ A API estará disponível em: `http://localhost:5016`
 
 ---
 
-### Testando Manualmente com cURL ou Postman
+## Documentação API
 
-📌 **Criar um registro de horas extras:**
+Base URL da API:
+
+```
+http://localhost:5016/api/v1/overtime
+```
+
+---
+
+## 📌 Endpoints Disponíveis
+
+### 1️⃣ **Registrar Hora Extra**
+
+**Endpoint:**
+
+```
+POST /api/v1/overtime/register
+```
+
+**Descrição:** Registra uma nova entrada de hora extra para um usuário.
+
+**Exemplo de Requisição:**
 
 ```sh
 curl -X POST "http://localhost:5016/api/v1/overtime/register" \
      -H "Content-Type: application/json" \
-     -d '{"User":"testuser@example.com","InitialTime":"2025-03-02 17:00:00","FinishTime":"2025-03-02 23:00:00","Description":"Hora extra teste"}'
+     -d '{
+           "User": "yuri.gomes",
+           "InitialTime": "2025-02-03 18:00:00",
+           "FinishTime": "2025-02-03 23:00:00",
+           "Description": "Mock description test"
+         }'
 ```
 
-📌 **Listar registros de um usuário:**
+**Exemplo de Resposta (201 Created):**
+
+```json
+{
+  "id": "e44143ab-e2b8-4092-a14f-5913151b2552",
+  "message": "Registered successful overtime !"
+}
+```
+
+**Possíveis Códigos de Resposta:**
+| Status Code | Significado |
+|------------|------------|
+| 201 Created | Registro criado com sucesso ! |
+| 400 Bad Request | Campo faltando ou valor inválido no payload |
+| 500 Internal Server Error | Internal Server Error |
+
+---
+
+### 2️⃣ **Listar Horas Extras de um Usuário**
+
+**Endpoint:**
+
+```
+GET /api/v1/overtime/list?user={user.name}
+```
+
+**Descrição:** Retorna a lista de horas extras registradas para um usuário específico.
+
+**Exemplo de Requisição:**
 
 ```sh
-curl -X GET "http://localhost:5016/api/v1/overtime/list?user=testuser@example.com"
+curl -X GET "http://localhost:5016/api/v1/overtime/list?user=yuri.gomes"
 ```
+
+**Exemplo de Resposta (200 OK):**
+
+```json
+[
+  {
+    "id": "e44143ab-e2b8-4092-a14f-5913151b2552",
+    "user": "yuri.gomes",
+    "initialTime": "2025-02-03T22:00:00Z",
+    "finishTime": "2025-02-04T03:00:00Z",
+    "description": "mock description test",
+    "date": "2025-02-04T03:24:17.476Z"
+  }
+]
+```
+
+**Possíveis Códigos de Resposta:**
+| Status Code | Significado |
+|------------|------------|
+| 200 OK | Lista retornada com sucesso |
+| 400 Bad Request | Parâmetro de usuário ausente ou inválido |
+| 404 Not Found | Nenhum registro encontrado para o usuário informado |
+| 500 Internal Server Error | Erro inesperado ao processar a requisição |
 
 ---
 
