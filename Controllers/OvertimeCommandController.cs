@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 [ApiController]
@@ -16,8 +17,17 @@ public class OvertimeCommandController : ControllerBase
   [HttpPost("register")]
   public async Task<IActionResult> RegisterOvertime([FromBody] RegisterOvertimeCommand command)
   {
-    var result = await _mediator.Send(command);
-    return Ok(new { Id = result, Mensagem = "Hora extra registrada!" });
+    if (command == null)
+      return BadRequest("Invalid data for recording overtime.");
+
+    try
+    {
+      var result = await _mediator.Send(command);
+      return CreatedAtAction(nameof(RegisterOvertime), new { id = result }, new { Id = result, Message = "Registered successful overtime !" });
+    }
+    catch (Exception ex)
+    {
+      return StatusCode(500, new { Message = "Internal error processing the request.", Error = ex.Message });
+    }
   }
 }
-
