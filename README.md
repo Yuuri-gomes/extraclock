@@ -6,6 +6,7 @@
 
 - **.NET 9.0 SDK** instalado
 - **Docker e Docker Compose** instalados
+- **MongoDb** instalado
 
 ### Passo a Passo
 
